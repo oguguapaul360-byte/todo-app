@@ -11,7 +11,11 @@ const todoPostCompletedInputElement = document.getElementById(
 const todoPostTitleInputElement = document.getElementById("todoPostTitleInput");
 const todoPostButtonElement = document.getElementById("todoPostButton");
 const todoPostParagraphElement = document.getElementById("todoPostParagraph");
-
+const todoDeleteParagraphElement = document.getElementById(
+  "todoDeleteParagraph",
+);
+const todoDeleteIdInputElement = document.getElementById("todoDeleteIdInput");
+const todoDeleteButtonElement = document.getElementById("todoDeleteButton");
 
 todoGetButtonElement.addEventListener("click", async function getTodo() {
   const todoId = todoGetInputElement.value;
@@ -49,4 +53,18 @@ todoPostButtonElement.addEventListener("click", async function postTodo() {
   } = todo;
   console.log({ todoTitle, todoUserId, todoId, todoCompleted });
   todoPostParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My todo is ${todoTitle} and id is ${todoId}. It has ${todoCompleted ? "" : "not"} been completed`;
+});
+
+todoDeleteButtonElement.addEventListener("click", async function deleteTodo() {
+  const todoId = todoDeleteIdInputElement.value;
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId}`,
+    {
+      method: "DELETE",
+    },
+  );
+  const todo = await response.json();
+  const { title, userId, id, completed } = todo;
+  console.log({ title, userId, id, completed });
+  todoDeleteParagraphElement.textContent = `Hello👋🏿, I am User ${userId}. My todo is ${title} and id is ${id}. It has ${completed ? "" : "not"} been completed`;
 });
