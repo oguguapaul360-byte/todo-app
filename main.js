@@ -49,7 +49,7 @@ todoPostButtonElement.addEventListener("click", async function postTodo() {
   console.log({ todoTitle, todoUserId, todoId, todoCompleted });
   todoPostParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My todo is ${todoTitle} and id is ${todoId}. It has ${todoCompleted ? "" : "not"} been completed`;
 });
-
+ 
 const todoPutUserIdInputElement = document.getElementById("todoPutUserIdInput");
 const todoPutCompletedInputElement = document.getElementById(
   "todoPutCompletedInput",
@@ -59,7 +59,7 @@ const todoPutButtonElement = document.getElementById("todoPutButton");
 const todoPutParagraphElement = document.getElementById("todoPutParagraph");
 
 todoPutButtonElement.addEventListener("click", async function putTodo() {
-  const userId = todoPutUserIdInputElement.value;
+  const userId = Number(todoPutUserIdInputElement.value);
   const completed = todoPutCompletedInputElement.checked;
   const title = todoPutTitleInputElement.value;
 
