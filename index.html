@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="main.js" defer></script>
     <title>Todo App</title>
+    <link href="./css/tailwind.css" rel="stylesheet">
   </head>
   <body>
     <div>
@@ -35,6 +36,23 @@
       <p id="todoPostParagraph"></p>
     </div>
     <div>
+      <h2>Patch Todo</h2>
+
+      <input
+        type="number"
+        id="todoPatchUserIdInputElement"
+        placeholder="todoPatchUserIdInputElement"
+      />
+      <input type="checkbox" id="todoPatchCompletedInput" />
+      <input
+        type="text"
+        id="todoPatchTitleInput"
+        placeholder="todoPatchTitleInput"
+      />
+      <button id="todoPatchButton">Patch Todo</button>
+      <p id="todoPatchParagraph"></p>
+    </div>
+    <div>
       <h2>Put Todo</h2>
       <input
         type="number"
@@ -50,5 +68,13 @@
       <button id="todoPutButton">Put Todo</button>
       <p id="todoPutParagraph"></p>
     </div>
+    <div><h2>Delete Todo</h2>
+      <input
+        type="number"
+        id="todoDeleteIdInput"
+        placeholder="todoDeleteIdInput"
+      />
+      <button id="todoDeleteButton">Delete Todo</button>
+      <p id="todoDeleteParagraph"></p></div>
   </body>
 </html>
