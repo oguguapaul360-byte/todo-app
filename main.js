@@ -15,6 +15,11 @@ const todoPostParagraphElement = document.getElementById("todoPostParagraph");
 // const todopatchTitleInputElement = document.getElementById(
 //   "todoPatchTitleInput",
 // );
+const todoDeleteParagraphElement = document.getElementById(
+  "todoDeleteParagraph",
+);
+const todoDeleteIdInputElement = document.getElementById("todoDeleteIdInput");
+const todoDeleteButtonElement = document.getElementById("todoDeleteButton");
 
 todoGetButtonElement.addEventListener("click", async function getTodo() {
   const todoId = todoGetInputElement.value;
@@ -75,6 +80,36 @@ todoPatchButtonElement.addEventListener("click", async function PatchTodo() {
     body: JSON.stringify({
       title,
       userid,
+todoDeleteButtonElement.addEventListener("click", async function deleteTodo() {
+  const todoId = todoDeleteIdInputElement.value;
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId}`,
+    {
+      method: "DELETE",
+    },
+  );
+  const todo = await response.json();
+  const { title, userId, id, completed } = todo;
+  console.log({ title, userId, id, completed });
+  todoDeleteParagraphElement.textContent = `Hello👋🏿, I am User ${userId}. My todo is ${title} and id is ${id}. It has ${completed ? "" : "not"} been completed`;
+const todoPutUserIdInputElement = document.getElementById("todoPutUserIdInput");
+const todoPutCompletedInputElement = document.getElementById(
+  "todoPutCompletedInput",
+);
+const todoPutTitleInputElement = document.getElementById("todoPutTitleInput");
+const todoPutButtonElement = document.getElementById("todoPutButton");
+const todoPutParagraphElement = document.getElementById("todoPutParagraph");
+
+todoPutButtonElement.addEventListener("click", async function putTodo() {
+  const userId = todoPutUserIdInputElement.value;
+  const completed = todoPutCompletedInputElement.checked;
+  const title = todoPutTitleInputElement.value;
+
+  const response = await fetch(`https://jsonplaceholder.typicode.com/todos/6`, {
+    method: "PUT",
+    body: JSON.stringify({
+      userId,
+      title,
       completed,
     }),
     headers: {
@@ -85,9 +120,11 @@ todoPatchButtonElement.addEventListener("click", async function PatchTodo() {
   const {
     title: todoTitle,
     userid: todoUserId,
+    userId: todoUserId,
     id: todoId,
     completed: todoCompleted,
   } = todo;
   console.log({ todoTitle, todoUserId, todoId, todoCompleted });
   todoPatchParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My todo is ${todoTitle} and id is ${todoId}. It has ${todoCompleted ? "" : "not"} been completed`;
+  todoPutParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My todo is ${todoTitle} and id is ${todoId}. It has ${todoCompleted ? "" : "not"} been completed`;
 });
